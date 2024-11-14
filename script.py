@@ -20,7 +20,7 @@ from modules.text_generation import (
 
 params = {
     "display_name": "Testing Extension",
-    "is_tab": False,
+    "is_tab": True,
 }
 
 class MyLogits(LogitsProcessor):
@@ -32,9 +32,9 @@ class MyLogits(LogitsProcessor):
         pass
 
     def __call__(self, input_ids, scores):
-        # probs = torch.softmax(scores, dim=-1, dtype=torch.float)
-        # probs[0] /= probs[0].sum()
-        # scores = torch.log(probs / (1 - probs))
+        probs = torch.softmax(scores, dim=-1, dtype=torch.float)
+        probs[0] /= probs[0].sum()
+        scores = torch.log(probs / (1 - probs))
         return scores
 
 def history_modifier(history):
@@ -113,7 +113,7 @@ def custom_css():
     """
     Returns a CSS string that gets appended to the CSS for the webui.
     """
-    return ' html, body {background: blue;}'
+    return ''
 
 def custom_js():
     """
@@ -126,7 +126,6 @@ def setup():
     """
     Gets executed only once, when the extension is imported.
     """
-    print("testovaci")
     pass
 
 def ui():
