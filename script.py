@@ -19,7 +19,7 @@ from modules.text_generation import (
 )
 
 params = {
-    "display_name": "Example Extension",
+    "display_name": "Testing Extension",
     "is_tab": False,
 }
 
