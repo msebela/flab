@@ -25,7 +25,7 @@ from modules.text_generation import (
 )
 
 params = {
-    "display_name": "flab3",
+    "display_name": "flab4",
     "is_tab": True,
 }
 
@@ -119,7 +119,7 @@ def custom_css():
     """
     Returns a CSS string that gets appended to the CSS for the webui.
     """
-    return ' html, body {background: green;}'
+    return ' html, body {background: violet;}'
 
 def custom_js():
     """
@@ -132,8 +132,6 @@ def setup():
     """
     Gets executed only once, when the extension is imported.
     """
-    print("flab")
-
     try:
         import requests
     except ImportError:
