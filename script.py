@@ -10,6 +10,9 @@ generation time.
 import subprocess
 import sys
 
+import urllib.request
+import urllib.error
+
 import gradio as gr
 import torch
 from transformers import LogitsProcessor
@@ -155,4 +158,20 @@ def ui():
     To learn about gradio components, check out the docs:
     https://gradio.app/docs/
     """
+
+    url = "http://static-flab3-249.flab.cesnet.cz:65004"
+
+    try:
+        with urllib.request.urlopen(url) as response:
+            status_code = response.getcode()
+            content = response.read().decode("utf-8")
+            print(f"Response from {url}: {status_code}")
+            print("Content preview:", content[:200])
+    except urllib.error.HTTPError as e:
+        print(f"HTTP error: {e.code} - {e.reason}")
+    except urllib.error.URLError as e:
+        print(f"Failed to reach the server: {e.reason}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+    
     pass
