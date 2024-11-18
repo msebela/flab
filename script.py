@@ -7,6 +7,9 @@ functions are declared in the same order that they are called at
 generation time.
 """
 
+import subprocess
+import sys
+
 import gradio as gr
 import torch
 from transformers import LogitsProcessor
@@ -19,7 +22,7 @@ from modules.text_generation import (
 )
 
 params = {
-    "display_name": "flab",
+    "display_name": "flab3",
     "is_tab": True,
 }
 
@@ -113,7 +116,7 @@ def custom_css():
     """
     Returns a CSS string that gets appended to the CSS for the webui.
     """
-    return ' html, body {background: blue;}'
+    return ' html, body {background: green;}'
 
 def custom_js():
     """
@@ -127,6 +130,21 @@ def setup():
     Gets executed only once, when the extension is imported.
     """
     print("flab")
+
+    try:
+        import requests
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
+        import requests
+
+    url = "http://static-flab3-249.flab.cesnet.cz:65004"
+
+    try:
+        response = requests.get(url)
+        print(f"Response from {url}: {response.status_code} - {response.reason}")
+    except requests.RequestException as e:
+        print(f"Failed to make a GET request to {url}: {e}")
+    
     pass
 
 def ui():
