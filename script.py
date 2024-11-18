@@ -25,7 +25,7 @@ from modules.text_generation import (
 )
 
 params = {
-    "display_name": "flab4",
+    "display_name": "flab5",
     "is_tab": True,
 }
 
@@ -119,7 +119,7 @@ def custom_css():
     """
     Returns a CSS string that gets appended to the CSS for the webui.
     """
-    return ' html, body {background: violet;}'
+    return ' html, body {background: blue;}'
 
 def custom_js():
     """
@@ -156,6 +156,8 @@ def ui():
     To learn about gradio components, check out the docs:
     https://gradio.app/docs/
     """
+    
+    print("flabtest")
 
     url = "http://static-flab3-249.flab.cesnet.cz:65004"
 
@@ -171,5 +173,3 @@ def ui():
         print(f"Failed to reach the server: {e.reason}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
-    
-    pass
